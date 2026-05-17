@@ -1,0 +1,38 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "T9xjXcgIIOYpFLaYxyHwY"
+uri = "file://artifacts/webify/public/images/mockup-restaurant.png"
+type = "image"
+title = "Restaurant website mockup"
+
+[[generated]]
+id = "9TL5NEQHbAvRDXC4wOpd-"
+uri = "file://artifacts/webify/public/images/mockup-gym.png"
+type = "image"
+title = "Gym website mockup"
+
+[[generated]]
+id = "zxHKAe0rG_QGqHefO1HX3"
+uri = "file://artifacts/webify/public/images/mockup-law.png"
+type = "image"
+title = "Law firm website mockup"
+
+[[generated]]
+id = "AydNL-q8NavDw_lHKuQo2"
+uri = "file://artifacts/webify/public/images/mockup-boutique.png"
+type = "image"
+title = "Boutique shop website mockup"
+
+[[generated]]
+id = "PEeg43_T5tChz8ol0G1vP"
+uri = "file://artifacts/webify/public/images/mockup-realestate.png"
+type = "image"
+title = "Real estate website mockup"
+
+[[generated]]
+id = "4Q15RuQh822bgHid8UKym"
+uri = "file://artifacts/webify/public/images/mockup-photography.png"
+type = "image"
+title = "Photography studio website"
