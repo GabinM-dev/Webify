@@ -1,22 +1,19 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { Zap, Palette, DollarSign } from "lucide-react";
 
-const testimonials = [
+const benefits = [
   {
-    quote: "Webify completely transformed our online presence. Our old site was outdated and hard to use. Since launching the new site, our online reservations have doubled. These students know exactly what they're doing.",
-    author: "Sarah Jenkins",
-    role: "Owner, The Rustic Table",
+    icon: Zap,
+    title: "Fast, responsive websites that work on all devices",
   },
   {
-    quote: "Working with Webify was incredibly smooth. They captured the high-energy vibe of our gym perfectly. The design is sleek, modern, and really sets us apart from competitors in the area.",
-    author: "Marcus Thorne",
-    role: "Founder, Iron Core Fitness",
+    icon: Palette,
+    title: "Modern, clean UI/UX design focused on users",
   },
   {
-    quote: "Professional, responsive, and incredibly talented. They delivered a website that exudes trust and authority for our law firm, but did it with a modern edge that we didn't even know we needed.",
-    author: "Elena Rodriguez",
-    role: "Partner, Smith & Associates",
+    icon: DollarSign,
+    title: "Affordable pricing",
   },
 ];
 
@@ -33,35 +30,39 @@ export default function Testimonials() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-bold mb-6 text-foreground"
           >
-            Client Stories
+            Why Webify?
           </motion.h2>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-muted-foreground leading-relaxed"
+          >
+            Webify builds modern, clean, and responsive websites designed to help businesses grow online. We focus on simplicity, performance, and user experience.
+          </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {benefits.map((benefit, index) => {
+            const Icon = benefit.icon;
+            return (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.15 }}
-              className="bg-card border border-border p-8 rounded-2xl relative"
+              className="bg-card border border-border p-8 rounded-2xl flex flex-col items-center text-center"
             >
-              <Quote className="w-10 h-10 text-primary/20 absolute top-6 left-6" />
-              <p className="text-foreground text-lg leading-relaxed relative z-10 mt-8 mb-8">
-                "{testimonial.quote}"
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center text-muted-foreground font-bold font-mono text-xl">
-                  {testimonial.author.charAt(0)}
-                </div>
-                <div>
-                  <h4 className="font-bold text-foreground">{testimonial.author}</h4>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                </div>
-              </div>
+              <Icon className="w-12 h-12 text-primary mb-4" />
+              <h3 className="text-foreground text-lg font-semibold">
+                {benefit.title}
+              </h3>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

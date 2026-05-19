@@ -39,17 +39,15 @@ function Counter({ end, suffix = "", duration = 2 }) {
 }
 
 const stats = [
-  { value: 50, suffix: "+", label: "Projects Completed" },
-  { value: 40, suffix: "+", label: "Satisfied Clients" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
-  { value: 24, suffix: "h", label: "Response Time" },
+  { value: 6, suffix: "h", label: "Response Time" },
+  { value: null, suffix: "", label: "First-Time Customer Discount" },
 ];
 
 export default function Counters() {
   return (
     <section className="py-20 relative z-10 border-y border-border bg-card">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-center">
           {stats.map((stat, index) => (
             <motion.div 
               key={index}
@@ -59,8 +57,14 @@ export default function Counters() {
               transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
               className="flex flex-col items-center justify-center"
             >
-              <Counter end={stat.value} suffix={stat.suffix} />
-              <div className="mt-2 text-muted-foreground font-medium">{stat.label}</div>
+              {stat.value !== null ? (
+                <>
+                  <Counter end={stat.value} suffix={stat.suffix} />
+                  <div className="mt-2 text-muted-foreground font-medium">{stat.label}</div>
+                </>
+              ) : (
+                <div className="text-2xl md:text-4xl font-bold text-foreground font-mono">{stat.label}</div>
+              )}
             </motion.div>
           ))}
         </div>

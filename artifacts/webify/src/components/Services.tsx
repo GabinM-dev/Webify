@@ -5,33 +5,33 @@ import { Code, Smartphone, PenTool, Layout, Wrench, LineChart } from "lucide-rea
 const services = [
   {
     title: "Custom Website Design",
-    description: "Tailored websites built from scratch to perfectly match your brand and business goals.",
+    description: "We create websites from the ground up that are built specifically around your brand, audience, and goals.",
     icon: <Code className="w-8 h-8 text-primary" />,
   },
   {
     title: "Mobile Optimization",
-    description: "Responsive designs ensuring your site looks flawless and functions perfectly on every device.",
+    description: "We ensure your website looks and works perfectly on all devices, from phones to tablets and desktops.",
     icon: <Smartphone className="w-8 h-8 text-secondary" />,
   },
   {
     title: "Brand Identity",
-    description: "Cohesive visual systems including logo design, color palettes, and typography.",
+    description: "We design the visual style of your brand so it looks consistent, professional, and instantly recognizable.",
     icon: <PenTool className="w-8 h-8 text-primary" />,
   },
   {
     title: "UI/UX Design",
-    description: "Intuitive user interfaces and seamless experiences that keep your customers engaged.",
+    description: "We design user-friendly interfaces that make your website easy to navigate and visually engaging.",
     icon: <Layout className="w-8 h-8 text-secondary" />,
   },
   {
-    title: "Website Maintenance",
-    description: "Ongoing support, updates, and security monitoring to keep your site running smoothly.",
-    icon: <Wrench className="w-8 h-8 text-primary" />,
+    title: "Sales Tracking",
+    description: "Coming Soon.",
+    icon: <LineChart className="w-8 h-8 text-secondary" />,
   },
   {
-    title: "SEO & Analytics",
-    description: "Search engine optimization and data tracking to help you reach more customers.",
-    icon: <LineChart className="w-8 h-8 text-secondary" />,
+    title: "AI Assistant",
+    description: "Coming Soon.",
+    icon: <Wrench className="w-8 h-8 text-primary" />,
   },
 ];
 
@@ -68,7 +68,7 @@ export default function Services() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-bold mb-6 text-foreground"
           >
-            Capabilities
+            Our Services
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ export default function Services() {
             transition={{ delay: 0.1 }}
             className="text-muted-foreground text-lg"
           >
-            Comprehensive digital solutions designed to elevate your local business. We blend creativity with modern technology.
+            We design and build modern digital solutions to help businesses grow, improve their online presence, and create better user experiences.
           </motion.p>
         </div>
 

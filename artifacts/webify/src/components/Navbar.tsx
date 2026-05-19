@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "wouter";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -10,17 +10,12 @@ export default function Navbar() {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 50) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
+    setIsScrolled(latest > 50);
   });
 
   const navLinks = [
     { name: "Services", href: "#services" },
     { name: "Portfolio", href: "#portfolio" },
-    { name: "Testimonials", href: "#testimonials" },
   ];
 
   return (
@@ -35,11 +30,17 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+
+        {/* LOGO */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all">
-            <span className="text-primary-foreground font-bold font-mono text-xl tracking-tighter">W</span>
-          </div>
-          <span className="text-xl font-bold tracking-tight text-foreground">Webify</span>
+          <img
+            src="/images/Webify.png"
+            alt="Webify Logo"
+            className="w-18 h-18 rounded-lg object-cover group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all"
+          />
+          <span className="text-xl font-bold tracking-tight text-foreground">
+            Webify
+          </span>
         </Link>
 
         {/* Desktop Nav */}
@@ -53,7 +54,11 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          <Button asChild className="rounded-full px-6 bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all">
+
+          <Button
+            asChild
+            className="rounded-full px-6 bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all"
+          >
             <a href="#contact">Get Started</a>
           </Button>
         </nav>
@@ -72,7 +77,6 @@ export default function Navbar() {
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
           className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border px-6 py-4"
         >
           <div className="flex flex-col gap-4">
@@ -86,6 +90,7 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
+
             <Button asChild className="mt-2 rounded-full bg-primary text-primary-foreground">
               <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
                 Get Started
