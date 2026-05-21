@@ -14,7 +14,6 @@ export default function Navbar() {
   });
 
   const navLinks = [
-    { name: "Services", href: "#services" },
     { name: "Portfolio", href: "#portfolio" },
   ];
 

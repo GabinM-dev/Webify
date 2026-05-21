@@ -9,18 +9,6 @@ const projects = [
     image: "/images/aero-logbook.png",
     github: "https://github.com/GabinM-dev/Aero-Logbook",
   },
-  {
-    title: "Golden Crumbs",
-    category: "Bakery",
-    image: "/images/golden-crumbs.png",
-    github: "https://github.com/GabinM-dev/Golden-Crumbs",
-  },
-  {
-    title: "Slice Spot",
-    category: "Restaurant",
-    image: "/images/slice-spot.png",
-    github: "https://github.com/GabinM-dev/Slice-Spot",
-  },
 ];
 
 export default function Portfolio() {

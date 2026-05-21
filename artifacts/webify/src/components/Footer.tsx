@@ -20,17 +20,7 @@ export default function Footer() {
             </p>
           </div>
           
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">Services</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Custom Web Design</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Mobile Optimization</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Brand Identity</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">UI/UX Design</a></li>
-            </ul>
-          </div>
-          
-          <div>
+          <div className="md:col-span-2">
             <h4 className="font-semibold text-foreground mb-4">Company</h4>
             <ul className="space-y-2">
               <li><a href="#portfolio" className="text-muted-foreground hover:text-primary transition-colors">Our Work</a></li>
