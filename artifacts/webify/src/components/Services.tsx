@@ -1,41 +1,41 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Code, Smartphone, PenTool, Layout, Wrench, LineChart } from "lucide-react";
 
 const services = [
   {
     title: "Custom Website Design",
     description: "We create websites from the ground up that are built specifically around your brand, audience, and goals.",
-    icon: <Code className="w-8 h-8 text-primary" />,
+    icon: <Code className="w-8 h-8" />,
   },
   {
     title: "Mobile Optimization",
     description: "We ensure your website looks and works perfectly on all devices, from phones to tablets and desktops.",
-    icon: <Smartphone className="w-8 h-8 text-secondary" />,
+    icon: <Smartphone className="w-8 h-8" />,
   },
   {
     title: "Brand Identity",
     description: "We design the visual style of your brand so it looks consistent, professional, and instantly recognizable.",
-    icon: <PenTool className="w-8 h-8 text-primary" />,
+    icon: <PenTool className="w-8 h-8" />,
   },
   {
     title: "UI/UX Design",
     description: "We design user-friendly interfaces that make your website easy to navigate and visually engaging.",
-    icon: <Layout className="w-8 h-8 text-secondary" />,
+    icon: <Layout className="w-8 h-8" />,
   },
   {
     title: "Sales Tracking",
     description: "Coming Soon.",
-    icon: <LineChart className="w-8 h-8 text-secondary" />,
+    icon: <LineChart className="w-8 h-8" />,
   },
   {
     title: "AI Assistant",
     description: "Coming Soon.",
-    icon: <Wrench className="w-8 h-8 text-primary" />,
+    icon: <Wrench className="w-8 h-8" />,
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -45,12 +45,16 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 15 },
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
+    },
   },
 };
 
@@ -62,7 +66,7 @@ export default function Services() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -70,7 +74,8 @@ export default function Services() {
           >
             Our Services
           </motion.h2>
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -81,7 +86,7 @@ export default function Services() {
           </motion.p>
         </div>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -91,14 +96,20 @@ export default function Services() {
           {services.map((service, index) => (
             <motion.div key={index} variants={itemVariants} className="group relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
               <div className="relative h-full p-8 rounded-2xl bg-card border border-border overflow-hidden transition-all duration-300 group-hover:border-primary/50 group-hover:-translate-y-1">
-                <div className="w-14 h-14 rounded-xl bg-background border border-border flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <div className="w-14 h-14 rounded-xl bg-background border border-border flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-foreground">{service.title}</h3>
+
+                <h3 className="text-xl font-bold mb-3 text-foreground">
+                  {service.title}
+                </h3>
+
                 <p className="text-muted-foreground leading-relaxed">
                   {service.description}
                 </p>
+
                 <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl" />
               </div>
             </motion.div>

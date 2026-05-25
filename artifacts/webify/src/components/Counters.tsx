@@ -1,37 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 
-function Counter({ end, suffix = "", duration = 2 }) {
+type CounterProps = {
+  end: number;
+  suffix?: string;
+  duration?: number;
+};
+
+function Counter({ end, suffix = "", duration = 2 }: CounterProps) {
   const [count, setCount] = useState(0);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
-    if (isInView) {
-      let startTime;
-      let animationFrame;
+    if (!isInView) return;
 
-      const animate = (timestamp) => {
-        if (!startTime) startTime = timestamp;
-        const progress = (timestamp - startTime) / (duration * 1000);
+    let startTime: number | null = null;
+    let animationFrame: number;
 
-        if (progress < 1) {
-          setCount(Math.floor(end * progress));
-          animationFrame = requestAnimationFrame(animate);
-        } else {
-          setCount(end);
-        }
-      };
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
 
-      animationFrame = requestAnimationFrame(animate);
+      const progress = (timestamp - startTime) / (duration * 1000);
 
-      return () => cancelAnimationFrame(animationFrame);
-    }
+      if (progress < 1) {
+        setCount(Math.floor(end * progress));
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        setCount(end);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
   }, [end, duration, isInView]);
 
   return (
-    <div ref={ref} className="text-4xl md:text-6xl font-bold text-foreground font-mono">
+    <div
+      ref={ref}
+      className="text-4xl md:text-6xl font-bold text-foreground font-mono"
+    >
       {count}
       <span className="text-primary">{suffix}</span>
     </div>
@@ -49,21 +58,32 @@ export default function Counters() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-center">
           {stats.map((stat, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
+              transition={{
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100,
+              }}
               className="flex flex-col items-center justify-center"
             >
               {stat.value !== null ? (
                 <>
-                  <Counter end={stat.value} suffix={stat.suffix} />
-                  <div className="mt-2 text-muted-foreground font-medium">{stat.label}</div>
+                  <Counter
+                    end={stat.value}
+                    suffix={stat.suffix}
+                  />
+                  <div className="mt-2 text-muted-foreground font-medium">
+                    {stat.label}
+                  </div>
                 </>
               ) : (
-                <div className="text-2xl md:text-4xl font-bold text-foreground font-mono">{stat.label}</div>
+                <div className="text-2xl md:text-4xl font-bold text-foreground font-mono">
+                  {stat.label}
+                </div>
               )}
             </motion.div>
           ))}
