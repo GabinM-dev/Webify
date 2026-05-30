@@ -1,5 +1,10 @@
 {
   "installCommand": "pnpm install",
   "buildCommand": "node build.mjs",
-  "outputDirectory": "artifacts/api-server/dist"
+  "outputDirectory": "artifacts/api-server/dist",
+  "functions": {
+    "artifacts/api-server/dist/index.mjs": {
+      "runtime": "nodejs22.x"
+    }
+  }
 }
