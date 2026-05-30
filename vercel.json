@@ -1,5 +1,5 @@
 {
   "installCommand": "pnpm install",
-  "buildCommand": "node artifacts/api-server/build.mjs",
+  "buildCommand": "node build.mjs",
   "outputDirectory": "artifacts/api-server/dist"
 }
