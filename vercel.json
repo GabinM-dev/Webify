@@ -1,4 +1,5 @@
 {
+  "installCommand": "pnpm install --ignore-workspace-checks",
   "buildCommand": "node artifacts/api-server/build.mjs",
   "outputDirectory": "artifacts/api-server/dist"
 }
