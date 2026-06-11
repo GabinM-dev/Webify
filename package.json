@@ -4,7 +4,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "pnpm --filter ./artifacts/webify run build"
+  "dev": "vite",
+  "build": "vite build"
   },
   "devDependencies": {
     "prettier": "^3.8.3",
