@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center gap-2 group mb-4">
               <img
-                src="/images/Webify.png"
+                src="/images/webify(1).svg"
                 alt="Webify Logo"
                 className="w-18 h-18 rounded-lg object-cover group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all"
               />
