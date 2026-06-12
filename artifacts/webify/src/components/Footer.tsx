@@ -8,10 +8,9 @@ export default function Footer() {
   <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
     <div className="col-span-1 md:col-span-2">
       <Link href="/" className="flex items-center gap-2 group mb-4">
-        {/* Changed webify(1).png to Webify.png */}
-        {/* Added a dot before /images */}
+        {/* Logo image: /images/webify.png */}
         <img
-          src="./images/Webify.png"
+          src="/images/webify.png"
           alt="Webify Logo"
           className="w-18 h-18 rounded-lg object-cover group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all"
         />
