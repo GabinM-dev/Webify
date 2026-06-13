@@ -4,21 +4,20 @@ import { Link } from "wouter";
 export default function Footer() {
   return (
     <footer className="bg-card border-t border-border pt-16 pb-8">
-   <div className="container mx-auto px-6">
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-    <div className="col-span-1 md:col-span-2">
-      <Link href="/" className="flex items-center gap-2 group mb-4">
-        {/* Logo image: /images/webify.png */}
-        <img
-          src="/images/webify.png"
-          alt="Webify Logo"
-          className="w-18 h-18 rounded-lg object-cover group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all"
-        />
-        <span className="text-xl font-bold tracking-tight text-foreground">Webify</span>
-      </Link>
-      <p className="text-muted-foreground max-w-sm">
-        We help local businesses grow online with sleek, professional websites — built by students who are passionate about design.
-      </p>
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+          <div className="col-span-1 md:col-span-2">
+            <Link href="/" className="flex items-center gap-2 group mb-4">
+              <img
+                src="/images/webifylogo.png"
+                alt="Webify Logo"
+                className="w-18 h-18 rounded-lg object-cover group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all"
+              />
+              <span className="text-xl font-bold tracking-tight text-foreground">Webify</span>
+            </Link>
+            <p className="text-muted-foreground max-w-sm">
+              We help local businesses grow online with sleek, professional websites — built by students who are passionate about design.
+            </p>
           </div>
           
           <div className="md:col-span-2">

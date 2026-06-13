@@ -36,7 +36,7 @@ export default function Navbar() {
           <img
             src={webifyLogo}
             alt="Webify Logo"
-            className="w-18 h-18 rounded-lg object-cover group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all"
+            className="w-14 h-14 rounded-lg object-cover group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all"
           />
           <span className="text-xl font-bold tracking-tight text-foreground">
             Webify
