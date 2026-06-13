@@ -1,8 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 
+type ContactFormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
+};
+
 export default function ContactForm() {
+  const [submitted, setSubmitted] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormValues>({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (values: ContactFormValues) => {
+    setSubmitted(false);
+
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+    } catch (error) {
+      console.error("Contact form submission error:", error);
+    } finally {
+      setSubmitted(true);
+      reset();
+    }
+  };
+
   return (
     <section id="contact" className="py-24 bg-card border-t border-border relative z-10">
       <div className="container mx-auto px-6">
@@ -41,21 +84,87 @@ export default function ContactForm() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex-1 w-full bg-background p-10 rounded-2xl border border-border shadow-2xl text-center"
+            className="flex-1 w-full bg-background p-10 rounded-2xl border border-border shadow-2xl"
           >
 
-            <h3 className="text-2xl font-bold text-foreground mb-6">
+            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
               Contact Webify
             </h3>
 
-            <a href="mailto:gabin.m2009@gmail.com?subject=Webify%20Project%20Inquiry&body=Hi%20Webify%2C%20I%20want%20a%20website%20for%20my%20business.">
-              <Button className="w-full h-12 text-lg bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
-                Send Email
-              </Button>
-            </a>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 text-left">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <label className="block">
+                  <span className="text-sm font-medium text-foreground">First name</span>
+                  <input
+                    {...register("firstName", { required: "First name is required" })}
+                    className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    placeholder="John"
+                  />
+                  {errors.firstName && (
+                    <span className="text-xs text-destructive">{errors.firstName.message}</span>
+                  )}
+                </label>
 
-            <p className="text-sm text-muted-foreground mt-4">
-              ⏱ We respond within 6 hours
+                <label className="block">
+                  <span className="text-sm font-medium text-foreground">Last name</span>
+                  <input
+                    {...register("lastName", { required: "Last name is required" })}
+                    className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    placeholder="Smith"
+                  />
+                  {errors.lastName && (
+                    <span className="text-xs text-destructive">{errors.lastName.message}</span>
+                  )}
+                </label>
+              </div>
+
+              <label className="block">
+                <span className="text-sm font-medium text-foreground">Email</span>
+                <input
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Enter a valid email address",
+                    },
+                  })}
+                  className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  placeholder="you@example.com"
+                />
+                {errors.email && (
+                  <span className="text-xs text-destructive">{errors.email.message}</span>
+                )}
+              </label>
+
+              <label className="block">
+                <span className="text-sm font-medium text-foreground">What are you looking for?</span>
+                <textarea
+                  {...register("message", { required: "Please describe your project" })}
+                  className="mt-2 min-h-[140px] w-full rounded-3xl border border-border bg-background px-4 py-4 text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  placeholder="Tell us about your website, branding, or project goals..."
+                />
+                {errors.message && (
+                  <span className="text-xs text-destructive">{errors.message.message}</span>
+                )}
+              </label>
+
+              {submitted && (
+                <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-300">
+                  Thank you! Your message is on its way and we&apos;ll be in touch soon.
+                </div>
+              )}
+
+              <Button
+                type="submit"
+                className="w-full h-12 text-lg bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending…" : "Send message"}
+              </Button>
+            </form>
+
+            <p className="text-sm text-muted-foreground mt-6 text-center">
+              ⏱ We typically respond within 6 hours.
             </p>
 
           </motion.div>
