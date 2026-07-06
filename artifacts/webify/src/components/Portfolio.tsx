@@ -4,10 +4,10 @@ import { ArrowUpRight } from "lucide-react";
 
 const projects = [
   {
-    title: "Aero Logbook",
-    category: "Flight Tracking App",
+    title: "Golden Crumb",
+    category: "Bakery Website",
     image: "/images/aero-logbook.png",
-    github: "https://github.com/GabinM-dev/Aero-Logbook",
+    href: "https://golden-crumbs--gabinm2009.replit.app/",
   },
   {
     title: "Golden Crumbs",
@@ -58,7 +58,7 @@ export default function Portfolio() {
           {projects.map((project, index) => (
             <motion.a
               key={index}
-              href={project.github}
+              href={project.href}
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
